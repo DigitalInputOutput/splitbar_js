@@ -1,3 +1,7 @@
+body{
+    background-color: #cdcdcd;
+}
+
 .bar {
   display: flex;
   width: 100%;
@@ -16,13 +20,51 @@
 .part-3 { background: rgb(19, 150, 19); }
 
 .drag-handle {
-  position: absolute;
-  top: -3px;
-  width: 5px;
-  height: 122%;
-  background: rgb(101, 102, 103);
-  cursor: ew-resize;
+    position: absolute;
+    top: 0px;
+    width: 20px;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
 }
 
 .drag-handle.left  { left: calc(30%); }   /* Default for part-a */
 .drag-handle.right { left: calc(70%); }   /* Default for part-a + part-b */
+
+.triangle {
+    border-left: 122px solid transparent;
+    border-bottom: 0px solid transparent;
+    width: 0px;
+    border-right: 28px solid white;
+    background: transparent;
+    border-top: 41px solid transparent;
+}
+
+.gif-image {
+    width: 644px;
+    background: white;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 35px 0px 25px 0;
+}
+.gif-image img {
+    max-width: 90%;
+    background-color: #a5a5a5;
+    display: block;
+    margin: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    border: none;
+}
+
+#notice a{
+    display: block;
+    width: 96px;
+    margin: auto 14px auto auto;
+    padding: 35px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1a77af;
+    font-size: 19px;
+}

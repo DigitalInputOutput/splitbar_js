@@ -25,10 +25,18 @@
 
     <div class="bar" id="bar">
     </div>
+    <div id="notice">
+        <div class="triangle"></div>
+        <div class="gif-image">
+            <img src="notice.gif" alt="">
+            <a href="javascript:void(0)">Close it!</a>
+        </div>
+    </div>
     <script src="splitbar.js"></script>
     <script>
         //splitbar.js
         new SplitBar(container = "bar");
+        new Notice();
     </script>
 </body>
 </html>

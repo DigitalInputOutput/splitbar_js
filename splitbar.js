@@ -17,7 +17,7 @@ class SplitBar{
             if(parts.length > 0){
                 this.addDragHandle();
             }
-            this.container.innerHTML += document.getElementById("part-template").innerHTML;
+            this.container.insertAdjacentHTML("beforeend", document.getElementById("part-template").innerHTML);
         });
 
         this.colorfulParts();
@@ -31,7 +31,7 @@ class SplitBar{
         });
     }
     addDragHandle(){
-        this.container.innerHTML += document.getElementById("drag-template").innerHTML;
+        this.container.insertAdjacentHTML("beforeend", document.getElementById("drag-template").innerHTML);
     }
     changePartWidth(){
         let partWidth = 100 / document.querySelectorAll('.part').length;
@@ -45,17 +45,17 @@ class SplitBar{
             const leftPart = handle.previousElementSibling;
             const parts = Array.from(container.querySelectorAll('.part'));
 
-            let offset = 0;
+            this.offset = 0;
 
             for (const part of parts) {
                 if (part === leftPart) break;
-                offset += part.offsetWidth;
+                this.offset += part.offsetWidth;
             }
 
             const leftPartWidth = leftPart.offsetWidth;
             const handleWidth = handle.offsetWidth;
 
-            const handleLeft = offset + leftPartWidth - handleWidth / 2;
+            const handleLeft = this.offset + leftPartWidth - (handleWidth / 2);
 
             handle.style.left = `${handleLeft}px`;
         });
@@ -64,12 +64,14 @@ class SplitBar{
         document.querySelectorAll('.drag-handle').forEach(handle => {
             handle.addEventListener('mousedown', (e) => {
                 this.dragging = handle;
+                document.body.style.cursor = "ew-resize";
                 e.preventDefault();
             });
         });
 
         document.addEventListener('mouseup', () => {
             this.dragging = null;
+            document.body.style.cursor = "";
         });
 
         document.addEventListener('mousemove', (e) => {
@@ -99,7 +101,9 @@ class SplitBar{
 
             parts[0].style.width = newLeftPercent + "%";
             parts[1].style.width = (partsTotal - newLeftPercent) + "%";
-            this.dragging.style.left = (offsetPercent + newLeftPercent) + "%";
+
+            
+            this.dragging.style.left = (offsetPercent + newLeftPercent - ((this.dragging.offsetWidth / (totalWidth / 100)) / 2)) + "%";
         });
     }
     findAdjacentParts(handle) {
@@ -114,5 +118,13 @@ class SplitBar{
         }
 
         return [prev, next];
+    }
+}
+
+class Notice{
+    constructor(){
+        document.querySelector('#notice a').addEventListener('click',(e) => {
+            document.querySelector('#notice').style.display = 'none';
+        });
     }
 }
