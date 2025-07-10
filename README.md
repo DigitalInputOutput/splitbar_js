@@ -23,3 +23,8 @@ No installation needed. Just include the files:
 ```html
 <link rel="stylesheet" href="splitbar.css">
 <script src="splitbar.js"></script>
+
+
+## Example
+
+![til](./notice.png)
